@@ -434,6 +434,7 @@ select * from produto_pedido;
 -- Condições de filtros aos grupos – HAVING Statement
 -- Crie junções entre tabelas para fornecer uma perspectiva mais complexa dos dados
 
+Consultas simples
 select * from clientes;
 
 select * from produtos;
@@ -442,6 +443,7 @@ select * from fornecedores;
 
 select * from pedidos;
 
+Consultas com a cláusula where
 select * from clientes where datanascimento > '1990-01-01';
 
 select pnome, cpf, datanascimento from clientes where datanascimento > '1990-01-01';
@@ -461,14 +463,17 @@ from pagamentos where tipo = 'Pix';
 
 select * from produtos;
 
+Consulta criando um campo novo
 select nome, preco, round(preco * 0.12,2) as ICMS from produtos;
 
+Consulta com ordenação
 select * from produtos where preco >= 100.00
 order by preco;
 
 select * from produtos where preco <= 2000.00
 order by preco desc;
 
+Consulta com agrupamento
 select uf, count(idcliente) as total_clientes from clientes group by uf;
 
 select statusentrega, count(identrega) as total_entrega from entregas group by statusentrega;
@@ -480,6 +485,8 @@ select uf, count(idcliente) as total_clientes from clientes group by uf having c
 select idpagto, sum(valorpagto) as total_pagamentos from pagamentos 
 group by idpagto having sum(valorpagto) > 1000 order by total_pagamentos;
 
+
+Consultas com JOIN(junção de 2 tabelas ou mais)
 select f.razaosocial as fornecedor, p.nome as produto, fp.idfornecedor, fp.idproduto
 from fornecedor_produto fp
 join fornecedores f on fp.idfornecedor = f.idfornecedor
